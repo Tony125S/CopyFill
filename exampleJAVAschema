@@ -1,0 +1,51 @@
+{
+  "database_type": "MongoDB",
+  "reasoning": "The code uses Spring Data MongoDB annotations (`@Document`, `@Id`). MongoDB is a NoSQL document database, so entities map to collections instead of tables. Embedded objects like `HobbyDTO` are stored as nested sub-documents inside the `student` collection.",
+  "entities": [
+    {
+      "entity_name": "Student",
+      "collection_name": "student",
+      "fields": [
+        {
+          "name": "id",
+          "type": "ObjectId",
+          "primary_key": true,
+          "nullable": false
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "nullable": true
+        },
+        {
+          "name": "age",
+          "type": "Integer",
+          "nullable": true
+        },
+        {
+          "name": "hobbies",
+          "type": "Array<HobbyDTO>",
+          "nullable": true,
+          "embedded": true
+        }
+      ]
+    },
+    {
+      "entity_name": "HobbyDTO",
+      "collection_name": null,
+      "fields": [
+        {
+          "name": "name",
+          "type": "String",
+          "nullable": true
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "nullable": true
+        }
+      ],
+      "notes": "HobbyDTO is not a collection of its own; it is embedded inside the Student collection as an array of sub-documents."
+    }
+  ]
+}
