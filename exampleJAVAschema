@@ -1,3 +1,15 @@
+public class HobbyDTO {
+    private String name;
+    private String type;
+}
+@Document(collection = "student") public class Student {
+        @Id private String id;
+        private String name;
+        private int age; // Embedding DTO
+        private List<HobbyDTO> hobbies; 
+}
+
+
 {
   "database_type": "MongoDB",
   "reasoning": "The code uses Spring Data MongoDB annotations (`@Document`, `@Id`). MongoDB is a NoSQL document database, so entities map to collections instead of tables. Embedded objects like `HobbyDTO` are stored as nested sub-documents inside the `student` collection.",
